@@ -120,6 +120,76 @@
             </ul>
         </div>
     </div>
+
+    <div class="card mx-4 my-2">
+        <div class="card-header">
+            <h5 class="card-title">Operadores Aritmeticos</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group-numbered p-0">
+                <li class="list-group-item">+ (adição)</li>
+                <li class="list-group-item">- (subtração)</li>
+                <li class="list-group-item">* (multiplicação)</li>
+                <li class="list-group-item">/ (divisão)</li>
+                <li class="list-group-item">% (resto da divisão)</li>
+                <li class="list-group-item">** (potencia)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mx-4 my-2">
+        <div class="card-header">
+            <h5 class="card-title">Expressões Aritmeticas</h5>
+        </div>
+        <div class="card-body">
+            <p>Uma expressão aritmética é uma combinação de operadores e operandos que produz um resultado numérico.</p>
+
+            <h5 class="mt-3">Precedência de operadores</h5>
+            <p>A precedência de operadores é a ordem em que os operadores são avaliados.</p>
+            <ul class="list-unstyled p-0">
+                <li class="list-group-item">1. ** (potencia)</li>
+                <li class="list-group-item">2. * (multiplicação)</li>
+                <li class="list-group-item">2. / (divisão)</li>
+                <li class="list-group-item">2. % (resto da divisão)</li>
+                <li class="list-group-item">3. + (adição)</li>
+                <li class="list-group-item">3. - (subtração)</li>
+            </ul>
+            <p>Ex: 50/2+3**2 = <?php echo 50/2+3**2; ?></p>
+            <p>Operadores com a mesma precedência são avaliados da esquerda para a direita.</p>
+            <p>Ex: 50/2*4+3**2 = <?php echo 50/2*4+3**2; ?></p>
+            <p>Nesse caso a divisão e a multiplicação tem a mesma precedência, então são avaliados da esquerda para a direita. Sendo 50/2 = 25, 25*4 = 100, 100+3**2 = 109.</p>
+            <p> Se houver parenteses, os operadores dentro dos parenteses são avaliados primeiro.</p>
+            <p>Ex: (50/2+3)**2 = <?php echo (50/2+3)**2; ?></p>
+            <p>Nesse caso a divisão e a adição tem a mesma precedência, então são avaliados da esquerda para a direita. Sendo 50/2 = 25, 25+3 = 28, 28**2 = 784.</p>
+        </div>
+    </div>
+
+    <div class="card mx-4 my-2">
+        <div class="card-header">
+            <h5 class="card-title">Funções Aritmeticas em PHP</h5>
+        </div>
+        <div class="card-body">
+            <p>PHP possui uma serie de funções aritmeticas que podem ser usadas para realizar calculos.</p>
+            <ul class="list-group-numbered p-0">
+                <li class="list-group-item">abs(valor) - Retorna o valor absoluto de um numero</li>
+                <li class="list-group-item">base_convert(valor, base_origem, base_destino) - Converte um numero de uma base para outra</li>
+                <li class="list-group-item">ceil(valor) - Retorna o valor arredondado para cima</li>
+                <li class="list-group-item">floor(valor) - Retorna o valor arredondado para baixo</li>
+                <li class="list-group-item">round(valor) - Retorna o valor arredondado para o numero inteiro mais proximo</li>
+                <li class="list-group-item">hypot(valor1, valor2) - Retorna a hipotenusa de um triangulo retangulo</li>
+                <li class="list-group-item">intdiv(dividendo, divisor) - Retorna o resultado da divisão inteira entre dividendo e divisor</li>
+                <li class="list-group-item">max(valor1, valor2, ...) - Retorna o maior valor entre os valores passados</li>
+                <li class="list-group-item">min(valor1, valor2, ...) - Retorna o menor valor entre os valores passados</li>
+                <li class="list-group-item">pi() - Retorna o valor de pi</li>
+                <li class="list-group-item">pow(base, expoente) - Retorna o resultado da potencia entre base e expoente</li>
+                <li class="list-group-item">rand(min, max) - Retorna um numero aleatorio entre min e max</li>
+                <li class="list-group-item">sqrt(valor) - Retorna a raiz quadrada de um numero</li>
+                <li class="list-group-item">sin(valor) - Retorna o seno de um numero</li>
+                <li class="list-group-item">cos(valor) - Retorna o cosseno de um numero</li>
+                <li class="list-group-item">tan(valor) - Retorna a tangente de um numero</li>
+            </ul>
+        </div>
+    </div>
     <script src="../crudphp/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
