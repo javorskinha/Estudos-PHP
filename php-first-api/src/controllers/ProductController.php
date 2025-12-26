@@ -47,5 +47,48 @@
                 ]);
             }
         }
+
+        public function update($id)
+        {
+            try {
+                header('Content-Type: application/json');
+                $data = json_decode(file_get_contents('php://input'), true);
+                
+                $product = Product::update($id, $data);
+
+                http_response_code(200);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Produto atualizado com sucesso',
+                    'data' => $product,
+                ]);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ]);
+            }
+        }
+
+        public function delete($id)
+        {
+            try {
+                header('Content-Type: application/json');
+                Product::delete($id);
+
+                http_response_code(200);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Produto deletado com sucesso',
+                ]);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ]);
+            }
+        }
     }
 ?>

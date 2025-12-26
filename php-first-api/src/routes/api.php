@@ -6,6 +6,8 @@
 
     $router->get("/products", [ProductController::class, "index"]);
     $router->post("/products", [ProductController::class, "store"]);
+    $router->put("/products/:id", [ProductController::class, "update"]);
+    $router->delete("/products/:id", [ProductController::class, "delete"]);
 
     $router->run();
 ?>

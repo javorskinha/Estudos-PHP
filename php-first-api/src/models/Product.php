@@ -4,7 +4,7 @@
     class Product {
         private static $table = "product";
 
-        private function databaseConnection()
+        private static function databaseConnection()
         {
             $db = Database::getInstance();
             return $db->getConnection();
@@ -12,11 +12,11 @@
 
         private static function validateData($data)
         {
-            if (empty($data['nome'])) {
-                throw new Exception("O campo 'nome' é obrigatório");
+            if (empty($data['name'])) {
+                throw new Exception("O campo 'name' é obrigatório");
             }
-            if (empty($data['valor']) || !is_numeric($data['valor'])) {
-                throw new Exception("O campo 'valor' é obrigatório e deve ser um número");
+            if (empty($data['value']) || !is_numeric($data['value'])) {
+                throw new Exception("O campo 'value' é obrigatório e deve ser um número");
             }
         }
         
@@ -25,7 +25,7 @@
             try {
                 $conn = self::databaseConnection();
                 
-                $stmt = $conn->query("SELECT id, nome, descricao, valor FROM " . self::$table . " ORDER BY id DESC");
+                $stmt = $conn->query("SELECT id, name, description, value FROM " . self::$table . " ORDER BY id DESC");
                 $products = $stmt->fetchAll();
                 
                 return $products;
@@ -39,7 +39,7 @@
             try {
                 $conn = self::databaseConnection();
                 
-                $stmt = $conn->prepare("SELECT id, nome, descricao, valor FROM " . self::$table . " WHERE id = :id");
+                $stmt = $conn->prepare("SELECT id, name, description, value FROM " . self::$table . " WHERE id = :id");
                 $stmt->execute(['id' => $id]);
                 $product = $stmt->fetch();
                 
@@ -57,14 +57,14 @@
                 self::validateData($data);
                 
                 $stmt = $conn->prepare(
-                    "INSERT INTO " . self::$table . " (nome, descricao, valor) 
-                     VALUES (:nome, :descricao, :valor)"
+                    "INSERT INTO " . self::$table . " (name, description, value) 
+                     VALUES (:name, :description, :value)"
                 );
                 
                 $stmt->execute([
-                    'nome' => $data['nome'],
-                    'descricao' => $data['descricao'] ?? null,
-                    'valor' => $data['valor']
+                    'name' => $data['name'],
+                    'description' => $data['description'] ?? null,
+                    'value' => $data['value']
                 ]);
                 
                 $id = $conn->lastInsertId();
@@ -89,17 +89,17 @@
                 $fields = [];
                 $params = ['id' => $id];
                 
-                if (isset($data['nome'])) {
-                    $fields[] = "nome = :nome";
-                    $params['nome'] = $data['nome'];
+                if (isset($data['name'])) {
+                    $fields[] = "name = :name";
+                    $params['name'] = $data['name'];
                 }
-                if (isset($data['descricao'])) {
-                    $fields[] = "descricao = :descricao";
-                    $params['descricao'] = $data['descricao'] ?: null;
+                if (isset($data['description'])) {
+                    $fields[] = "description = :description";
+                    $params['description'] = $data['description'] ?: null;
                 }
-                if (isset($data['valor'])) {
-                    $fields[] = "valor = :valor";
-                    $params['valor'] = $data['valor'];
+                if (isset($data['value'])) {
+                    $fields[] = "value = :value";
+                    $params['value'] = $data['value'];
                 }
                 
                 if (empty($fields)) {
