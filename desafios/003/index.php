@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 003</title>
+</head>
+<body>
+    <h1>Desafio 003</h1>
+    <div>
+        <p>Conversor de moedas v1.0</p>
+        <p>Informe a quantidade de reais: </p>
+        <form action="index.php" method="post">
+            <input type="number" name="reais" id="reais" step="any">
+            <p>Informe a cotação do dolar: </p>
+            <input type="number" name="cotacao" id="cotacao" step="any">
+            <button type="submit" name="converter">converter</button>
+        </form>
+        <?php
+            if(isset($_POST['converter'])) {
+                $reais = floatval($_POST['reais']);
+                $cotacao = floatval($_POST['cotacao']);
+                $resultado = $reais / $cotacao;
+                echo "<p>O valor em dolar é: US$ " . number_format($resultado, 2, ',', '.') . "</p>";
+            }
+        ?>
+    </div>
+</body>
+</html>
