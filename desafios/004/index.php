@@ -18,26 +18,20 @@
         if(isset($_POST['reais'])) {
             $reais = floatval($_POST['reais']);
 
-            $dataCotacao = date('m-d-Y');
+            $dataInicial = date('m-d-Y', strtotime('-7 days'));
+            $dataFinalCotacao = date('m-d-Y');
 
-            $url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='{$dataCotacao}'&\$top=100&\$format=json";
-                
-            $response = @file_get_contents($url);
-                    
-            if($response !== false) {
-                $apiCotacao = json_decode($response, true);
-                
-                if(isset($apiCotacao['value']) && count($apiCotacao['value']) > 0) {
-                    $cotacaoDia = $apiCotacao['value'][0];
-                    $cotacao = $cotacaoDia['cotacaoVenda'];
-                    
-                    $resultado = $reais / $cotacao;
-                    echo "<p>Cotacao do dolar (venda): R$ " . number_format($cotacao, 4, ',', '.') . "<p>";
-                    echo "<p>O valor em dolar é: US$ " . number_format($resultado, 2, ',', '.') . "</p>";
-                } else {
-                    echo "<p>Erro: Nenhuma cotação encontrada para hoje. Tente novamente mais tarde.<p>";
-                }
-            }
+            $request = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='{$dataInicial}'&@dataFinalCotacao='{$dataFinalCotacao}'&\$top=1&\$orderby=dataHoraCotacao%20desc&\$format=json&\$select=cotacaoCompra,dataHoraCotacao";
+
+            $response = @file_get_contents($request);
+            $cotacaoJson = json_decode($response, true);
+            $cotacaoValue = $cotacaoJson['value'][0]['cotacaoCompra'];
+            $resultado = $reais / $cotacaoValue;
+
+            $currency = numfmt_create('pt_BR', NumberFormatter::CURRENCY);
+            $resultado = numfmt_format_currency($currency, $resultado, 'USD');
+
+            echo "<p>O valor em dolar é: $resultado</p>";
         }
     ?>
 </body>
