@@ -190,6 +190,29 @@
             </ul>
         </div>
     </div>
+
+    <div class="card mx-4 my-2">
+        <div class="card-header">
+            <h5 class="card-title">Superglobais PHP</h5>
+        </div>
+        <div class="card-body">
+        <p>
+                As superglobais PHP são variaveis que são sempre disponiveis em todos os escopos de um script. Elas são um array associativo que contém informações sobre o ambiente do servidor e o script que está sendo executado.
+            </p>
+            <ul class="list-group-numbered p-0">
+                <li class="list-group-item">$_GET - Valores de variaveis passadas via URL</li>
+                <li class="list-group-item">$_POST - Valores de variaveis passadas via POST</li>
+                <li class="list-group-item">$_REQUEST - Valores de variaveis passadas via URL ou POST</li>
+                <li class="list-group-item">$_FILES - Valores de arquivos enviados via HTTP POST</li>
+                <li class="list-group-item">$_COOKIE - Valores de cookies enviados via HTTP</li>
+                <li class="list-group-item">$_SESSION - Valores de sessões</li>
+                <li class="list-group-item">$_SERVER - Informações sobre o servidor e o script que está sendo executado</li>
+                <li class="list-group-item">$_ENV - Informações sobre o ambiente do servidor</li>
+                <li class="list-group-item">$_GLOBALS - Contém todas as variaveis globais do script</li>
+            </ul>
+        </div>
+    </div>
+
     <script src="../crudphp/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
